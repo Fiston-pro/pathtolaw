@@ -24,6 +24,7 @@
     pointer-events: auto;
     visibility: visible !important;
     opacity: 1 !important;
+    padding-bottom: env(safe-area-inset-bottom);
 }
 
 .comment-header {
@@ -141,6 +142,7 @@
     align-items: center;
     gap: 1rem;
     padding: 1rem 1.5rem;
+    padding-bottom: calc(1rem + env(safe-area-inset-bottom));
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     background: #0a0a0a;
 }
@@ -217,6 +219,7 @@
 @media (max-width: 768px) {
     .comment-panel {
         height: 80vh;
+        padding-bottom: env(safe-area-inset-bottom);
     }
 
     .comment-header {
@@ -237,5 +240,6 @@
 
     .comment-input-area {
         padding: 0.8rem 1rem;
+        padding-bottom: calc(0.8rem + env(safe-area-inset-bottom));
     }
 }
