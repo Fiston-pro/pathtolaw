@@ -4,43 +4,40 @@ import { useUser } from '../context/UserContext';
 import CommentSection from './CommentSection';
 import './LawCard.css';
 
-const LawCard = ({ law, isActive }) => {
-    const { isLiked, isSaved, toggleLike, toggleSave } = useUser();
-    const [localLikes, setLocalLikes] = useState(law.likes);
+const LawCard = ({ law, index }) => {
+    const { user, toggleLike, toggleBookmark } = useUser();
     const [commentsOpen, setCommentsOpen] = useState(false);
+    const [liked, setLiked] = useState(false);
+    const [bookmarked, setBookmarked] = useState(false);
+    const [localLikes, setLocalLikes] = useState(law.likes);
+    const [expanded, setExpanded] = useState(false);
     const videoRef = useRef(null);
 
-    const liked = isLiked(law.id);
-    const bookmarked = isSaved(law.id);
-
-    // Update local likes when global like state changes
     useEffect(() => {
-        if (liked) {
-            setLocalLikes(law.likes + 1);
-        } else {
-            setLocalLikes(law.likes);
+        if (user) {
+            setLiked(user.likedLaws.includes(law.id));
+            setBookmarked(user.bookmarkedLaws.includes(law.id));
         }
-    }, [liked, law.likes]);
+    }, [user, law.id]);
 
-    // Autoplay/pause video based on isActive
     useEffect(() => {
+        // Auto-play video when it comes into view
         if (videoRef.current) {
-            if (isActive && !commentsOpen) {
-                videoRef.current.play().catch(err => {
-                    console.log('Autoplay prevented:', err);
-                });
-            } else {
-                videoRef.current.pause();
-            }
+            videoRef.current.play().catch(err => {
+                console.log("Autoplay prevented:", err);
+            });
         }
-    }, [isActive, commentsOpen]);
+    }, []);
 
     const handleLike = () => {
         toggleLike(law.id);
+        setLiked(!liked);
+        setLocalLikes(prev => liked ? prev - 1 : prev + 1);
     };
 
     const handleBookmark = () => {
-        toggleSave(law.id);
+        toggleBookmark(law.id);
+        setBookmarked(!bookmarked);
     };
 
     const handleCommentClick = () => {
@@ -54,15 +51,15 @@ const LawCard = ({ law, isActive }) => {
         if (num >= 1000) {
             return (num / 1000).toFixed(1) + 'K';
         }
-        return num;
+        return num.toString();
     };
 
     return (
         <motion.div
             className="law-card"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: isActive ? 1 : 0.5, scale: isActive ? 1 : 0.95 }}
-            transition={{ duration: 0.4 }}
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: index * 0.1 }}
         >
             {/* Video Background */}
             <video
@@ -72,21 +69,37 @@ const LawCard = ({ law, isActive }) => {
                 loop
                 muted
                 playsInline
+                autoPlay
             />
 
-            {/* Dark overlay for better text readability */}
-            <div className="video-overlay"></div>
+            {/* Dark overlay for better text contrast */}
+            <div className="video-overlay" />
 
-            {/* Content overlay */}
+            {/* Content Overlay */}
             <div className="card-overlay-content">
-                {/* Top section with category */}
                 <div className="card-header-minimal">
-                    <span className="category-badge">{law.category}</span>
+                    <div className="category-badge">{law.category}</div>
                 </div>
 
-                {/* Bottom section with title and metadata */}
                 <div className="card-footer-info">
                     <h2 className="law-title-minimal">{law.title}</h2>
+
+                    <div className="law-description-container">
+                        <div
+                            className={`law-description ${expanded ? '' : 'collapsed'}`}
+                            onClick={() => setExpanded(!expanded)}
+                        >
+                            <p className="description-text">{law.description}</p>
+                        </div>
+                        {!expanded && law.description.length > 100 && (
+                            <button
+                                className="expand-btn"
+                                onClick={() => setExpanded(true)}
+                            >
+                                Czytaj więcej ▼
+                            </button>
+                        )}
+                    </div>
 
                     <div className="metadata-minimal">
                         <span className="date">📅 {law.date}</span>
@@ -95,7 +108,7 @@ const LawCard = ({ law, isActive }) => {
                 </div>
             </div>
 
-            {/* Interaction buttons on the right */}
+            {/* Action Buttons */}
             <div className="interaction-buttons">
                 <motion.button
                     className={`action-btn like-btn ${liked ? 'active' : ''}`}
