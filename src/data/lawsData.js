@@ -37,5 +37,44 @@ export const lawsData = [
         emoji: "🛡️",
         gradient: "from-green-500 to-emerald-400",
         description: "Rozszerzone przepisy RODO dają większą kontrolę nad danymi osobowymi. Możesz żądać usunięcia swoich danych, poprawiać nieprawidłowe informacje i wiedzieć, kto ma dostęp do Twoich danych. Firmy muszą chronić dane użytkowników pod groźbą wysokich kar."
+    },
+    {
+        id: 4,
+        title: "🌍 Zielony Ład - Nowe przepisy ekologiczne",
+        category: "Ekologia 🌱",
+        date: "Od 1 stycznia 2025",
+        views: "2.5M",
+        likes: 47000,
+        comments: 1500,
+        videoUrl: "/videos/law4.mp4",
+        emoji: "🌿",
+        gradient: "from-green-600 to-teal-500",
+        description: "Nowe przepisy Zielonego Ładu zmieniają sposób produkcji energii i gospodarowania odpadami w Unii Europejskiej. Celem jest zmniejszenie emisji CO2 o 55% do 2030 roku. Firmy muszą inwestować w odnawialne źródła energii, a konsumenci mogą korzystać z ulg podatkowych na ekologiczne rozwiązania."
+    },
+    {
+        id: 5,
+        title: "📱 Ustawa o Cyberbezpieczeństwie",
+        category: "Cyfrowe 💻",
+        date: "Od 15 marca 2024",
+        views: "1.5M",
+        likes: 32000,
+        comments: 823,
+        videoUrl: "/videos/law5.mp4",
+        emoji: "🔐",
+        gradient: "from-indigo-500 to-blue-600",
+        description: "Ustawa wprowadza surowe regulacje dotyczące ochrony przed cyberzagrożeniami. Firmy muszą wdrożyć systemy monitorowania bezpieczeństwa sieci i informować użytkowników o potencjalnych atakach. Naruszenie przepisów grozi poważnymi karami finansowymi."
+    },
+    {
+        id: 6,
+        title: "💰 Nowa ustawa o minimalnej pensji",
+        category: "Praca 💼",
+        date: "Od 1 lipca 2024",
+        views: "2.1M",
+        likes: 41000,
+        comments: 1540,
+        videoUrl: "/videos/law6.mp4",
+        emoji: "💵",
+        gradient: "from-yellow-500 to-orange-600",
+        description: "Nowe przepisy zwiększają minimalną pensję w Polsce. Od lipca 2024, każda osoba zatrudniona na pełny etat musi otrzymać co najmniej 4000 PLN miesięcznie. Zmiany mają na celu poprawę warunków życia pracowników i zmniejszenie nierówności dochodowych."
     }
 ];
