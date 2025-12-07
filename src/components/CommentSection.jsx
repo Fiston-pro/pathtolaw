@@ -1,10 +1,12 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { useUser } from '../context/UserContext';
 import './CommentSection.css';
 
 const CommentSection = ({ isOpen, onClose, lawId, commentCount }) => {
     const { addComment } = useUser();
+    const [mounted, setMounted] = useState(false);
     const [comments, setComments] = useState([
         {
             id: 1,
@@ -34,6 +36,11 @@ const CommentSection = ({ isOpen, onClose, lawId, commentCount }) => {
 
     const [newComment, setNewComment] = useState('');
 
+    useEffect(() => {
+        setMounted(true);
+        return () => setMounted(false);
+    }, []);
+
     const handleAddComment = () => {
         if (newComment.trim()) {
             const comment = {
@@ -61,7 +68,9 @@ const CommentSection = ({ isOpen, onClose, lawId, commentCount }) => {
         ));
     };
 
-    return (
+    if (!mounted) return null;
+
+    return createPortal(
         <AnimatePresence>
             {isOpen && (
                 <>
@@ -138,7 +147,8 @@ const CommentSection = ({ isOpen, onClose, lawId, commentCount }) => {
                     </motion.div>
                 </>
             )}
-        </AnimatePresence>
+        </AnimatePresence>,
+        document.body
     );
 };
 
