@@ -110,7 +110,7 @@
 
 .law-description:hover {
   background: rgba(0, 0, 0, 0.8);
-  border-color: rgba(168, 85, 247, 0.3);
+  border-color: oklab(62.684% 0.12975 -0.19311 / 0.3);
 }
 
 .law-description.collapsed {
