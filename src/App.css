@@ -158,6 +158,37 @@ body {
 }
 
 /* Responsive */
+@media (min-width: 768px) {
+  .app {
+    max-width: 480px;
+    margin: 0 auto;
+    height: 100vh;
+    background: #000;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .app-header {
+    max-width: 480px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Make the body have the gradient background instead */
+  body {
+    background: linear-gradient(180deg, #1a0f2e 0%, #0a0a0f 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+}
+
 @media (max-width: 768px) {
   .app-header {
     padding: 1rem;

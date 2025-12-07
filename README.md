@@ -21,13 +21,6 @@ Built with a futuristic, glassmorphism-inspired UI, it makes learning about your
 - **🌑 Premium UI**: Dark mode aesthetic with neon accents and glassmorphism effects.
 - **⚡ Mobile First**: Optimized for seamless performance on all mobile devices.
 
-## 🖼️ Gallery
-
-<div style="display: flex; gap: 20px;">
-  <img src="public/screenshots/app-screenshot.jpg" alt="Main Feed" width="45%">
-  <img src="public/screenshots/app-screenshot.jpg" alt="Comments Section" width="45%">
-</div>
-
 ## 🛠️ Tech Stack
 
 - **React 19**: Powered by the latest React features.

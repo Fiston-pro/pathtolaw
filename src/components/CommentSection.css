@@ -244,3 +244,13 @@
         padding-bottom: calc(0.8rem + env(safe-area-inset-bottom));
     }
 }
+
+/* Desktop Simulation */
+@media (min-width: 768px) {
+    .comment-panel {
+        left: calc(50% - 240px) !important;
+        right: auto !important;
+        width: 480px !important;
+        /* Do not set transform here, let Framer handle Y axis */
+    }
+}

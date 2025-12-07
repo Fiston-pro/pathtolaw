@@ -376,3 +376,14 @@
         gap: 1rem;
     }
 }
+
+/* Desktop Simulation */
+@media (min-width: 768px) {
+    .profile-page {
+        max-width: 480px;
+        margin: 0 auto;
+        border-left: 1px solid rgba(255, 255, 255, 0.1);
+        border-right: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+    }
+}
